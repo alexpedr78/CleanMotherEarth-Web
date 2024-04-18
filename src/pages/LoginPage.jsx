@@ -19,7 +19,11 @@ function LoginPage() {
     e.preventDefault();
 
     try {
-      const response = await Api.post("/auth/login", formState);
+      const response = await Api.post(
+        `${import.meta.env.VITE_BACKEND_URL}/auth/login`,
+
+        formState
+      );
       console.log(response);
       console.log(response.data.authToken);
       const token = response.data.authToken;
