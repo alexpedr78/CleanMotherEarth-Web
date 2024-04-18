@@ -1,8 +1,6 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import useAuth from "../../context/useAuth";
 
-import Avatar from "../Avatar/Avatar";
 function Navbar() {
   const { isLoggedIn, logout } = useAuth();
   return (
@@ -14,14 +12,17 @@ function Navbar() {
         <li>
           <Link to={"/user"}>Profile</Link>
         </li>
+        <li>
+          <Link to={"/app"}>App</Link>
+        </li>
         {isLoggedIn ? (
           <>
             <li>
               <button onClick={logout}>Logout</button>
             </li>
             <li>
-              <Avatar small />
-              <Avatar />
+              {/* <Avatar small />
+              <Avatar /> */}
             </li>
           </>
         ) : (

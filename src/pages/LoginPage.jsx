@@ -1,5 +1,5 @@
 import { useState } from "react";
-import boardgameApi from "../service/myApi";
+import Api from "../service/myApi.js";
 import { Link } from "react-router-dom";
 import useAuth from "./../context/useAuth";
 
@@ -19,7 +19,7 @@ function LoginPage() {
     e.preventDefault();
 
     try {
-      const response = await boardgameApi.post("/auth/login", formState);
+      const response = await Api.post("/auth/login", formState);
       console.log(response);
       console.log(response.data.authToken);
       const token = response.data.authToken;
