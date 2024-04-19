@@ -22,25 +22,23 @@ function App() {
   // const { user } = useAuth();
   return (
     <>
-      <AuthContextWrapper>
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route element={<IsLoggedOut />}>
-            <Route path="/signup" element={<SignupPage />} />
-            <Route path="/login" element={<LoginPage />} />
-          </Route>
-          <Route element={<IsLoggedIn />}>
-            <Route path="/user" element={<ProfilePage />} />
-            <Route path="/app" element={<AppPage />} />
-          </Route>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route element={<IsLoggedOut />}>
+          <Route path="/signup" element={<SignupPage />} />
+          <Route path="/login" element={<LoginPage />} />
+        </Route>
+        <Route element={<IsLoggedIn />}>
+          <Route path="/user" element={<ProfilePage />} />
+          <Route path="/app" element={<AppPage />} />
+        </Route>
 
-          <Route element={<IsAdmin />}>
-            <Route path="/dashboard" element={<DashboardPage />} />
-          </Route>
-        </Routes>
-        <Footer />
-      </AuthContextWrapper>
+        <Route element={<IsAdmin />}>
+          <Route path="/dashboard" element={<DashboardPage />} />
+        </Route>
+      </Routes>
+      <Footer />
     </>
   );
 }
