@@ -1,5 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import "leaflet/dist/leaflet.css";
+
 // import "react-leaflet/dist/react-leaflet.css";
 
 /* Pages */
@@ -14,31 +15,28 @@ import IsAdmin from "./components/routing/IsAdmin";
 import IsLoggedOut from "./components/routing/IsLoggedOut";
 import IsLoggedIn from "./components/routing/IsLoggedIn";
 /* Components */
-import Navbar from "./components/Navbar/Navbar";
-import AuthContextWrapper from "./context/AuthContextWrapper";
-import Footer from "./components/Footer/Footer";
-
+import useAuth from "./context/useAuth";
+import Layout from "./pages/Layout/Layout";
 function App() {
-  // const { user } = useAuth();
+  //const { user } = useAuth();
   return (
     <>
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route element={<IsLoggedOut />}>
-          <Route path="/signup" element={<SignupPage />} />
-          <Route path="/login" element={<LoginPage />} />
-        </Route>
-        <Route element={<IsLoggedIn />}>
-          <Route path="/user" element={<ProfilePage />} />
-          <Route path="/app" element={<AppPage />} />
-        </Route>
-
-        <Route element={<IsAdmin />}>
-          <Route path="/dashboard" element={<DashboardPage />} />
-        </Route>
-      </Routes>
-      <Footer />
+      <Layout>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route element={<IsLoggedOut />}>
+            <Route path="/signup" element={<SignupPage />} />
+            <Route path="/login" element={<LoginPage />} />
+          </Route>
+          <Route element={<IsLoggedIn />}>
+            <Route path="/user" element={<ProfilePage />} />
+            <Route path="/app" element={<AppPage />} />
+          </Route>
+          <Route element={<IsAdmin />}>
+            <Route path="/dashboard" element={<DashboardPage />} />
+          </Route>
+        </Routes>
+      </Layout>
     </>
   );
 }

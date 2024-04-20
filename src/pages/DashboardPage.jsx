@@ -1,5 +1,11 @@
+import Layout from "./Layout/Layout";
+
 function DashboardPage() {
-  return <div>Dashboard</div>;
+  return (
+    <Layout>
+      <div>Dashboard</div>;
+    </Layout>
+  );
 }
 
 export default DashboardPage;
