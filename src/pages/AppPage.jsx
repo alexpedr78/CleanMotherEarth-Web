@@ -1,12 +1,14 @@
 import { useState, useEffect } from "react";
 import Api from "../service/myApi";
 import Map from "../components/Map/Map";
-
+import FormPlaceAppPage from "../components/formPlaceAppPage/formPlaceAppPage.jsx";
 function AppPage() {
   const [markers, setMarkers] = useState([]);
   const [filter, setFilter] = useState(null);
   const [joining, setJoining] = useState([]);
   const [placeForm, setPlaceForm] = useState(null);
+  const [clickedPosition, setClickedPosition] = useState({ long: "", lat: "" });
+  const [showForm, setShowForm] = useState(false);
 
   async function fetchMarkersData() {
     try {
@@ -37,7 +39,7 @@ function AppPage() {
   useEffect(() => {
     fetchMarkersData();
     fetchIfUserIsJoining();
-  }, [filter]);
+  }, [filter, clickedPosition]);
 
   function handleClickButton(value) {
     setFilter(value);
@@ -56,12 +58,16 @@ function AppPage() {
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
             onClick={() => handleClickButton("place")}
           >
-            Places To Clean
+            Places That need our Help
           </button>
+
           {placeForm === "place" && (
-            <button className="mt-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
-              Tell us where we need to focus
-            </button>
+            <FormPlaceAppPage
+              clickedPosition={clickedPosition}
+              setClickedPosition={setClickedPosition}
+              setShowForm={setShowForm}
+              showForm={showForm}
+            />
           )}
         </div>
         <div>
@@ -72,20 +78,26 @@ function AppPage() {
             Events
           </button>
           {placeForm === "event" && (
-            <button className="mt-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
-              If you want to create an event click on places and pick an already
-              place to create an event about this place
+            <button className="mt-2 bg-blue-300 hover:bg-blue-400 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+              Find an event by clicking on the marker
             </button>
           )}
         </div>
       </div>
-      <Map
-        setMarkers={setMarkers}
-        filter={filter}
-        markers={markers}
-        setJoining={setJoining}
-        joining={joining}
-      />
+
+      <div className="flex-2/3 w-9/12 relative">
+        <Map
+          clickedPosition={clickedPosition}
+          setClickedPosition={setClickedPosition}
+          placeForm={placeForm}
+          setPlaceForm={setPlaceForm}
+          setMarkers={setMarkers}
+          filter={filter}
+          markers={markers}
+          setJoining={setJoining}
+          joining={joining}
+        />
+      </div>
     </div>
   );
 }

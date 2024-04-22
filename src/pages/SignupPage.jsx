@@ -1,5 +1,5 @@
 import { useState } from "react";
-import boardgameApi from "../service/myApi";
+import Api from "../service/myApi";
 import { Link, useNavigate } from "react-router-dom";
 
 function SignupPage() {
@@ -39,7 +39,7 @@ function SignupPage() {
       formData.append("pseudo", pseudo);
       formData.append("avatar", file);
 
-      const response = await boardgameApi.post("/auth/signup", formData);
+      const response = await Api.post("/auth/signup", formData);
 
       if (response.status === 201) {
         nav("/login");

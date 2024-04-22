@@ -2,7 +2,6 @@ import { useState } from "react";
 import Api from "../service/myApi.js";
 import { Link } from "react-router-dom";
 import useAuth from "./../context/useAuth";
-import Layout from "./Layout/Layout.jsx";
 function LoginPage() {
   const [formState, setFormState] = useState({ pseudo: "", password: "" });
   const [error, setError] = useState("");

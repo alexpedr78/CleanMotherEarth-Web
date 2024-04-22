@@ -14,8 +14,8 @@ import HomePage from "./pages/HomePage";
 import IsAdmin from "./components/routing/IsAdmin";
 import IsLoggedOut from "./components/routing/IsLoggedOut";
 import IsLoggedIn from "./components/routing/IsLoggedIn";
+import OnePlaceToCleanPage from "./pages/OnePlaceToCleanPage.jsx";
 /* Components */
-import useAuth from "./context/useAuth";
 import Layout from "./pages/Layout/Layout";
 function App() {
   //const { user } = useAuth();
@@ -31,6 +31,10 @@ function App() {
           <Route element={<IsLoggedIn />}>
             <Route path="/user" element={<ProfilePage />} />
             <Route path="/app" element={<AppPage />} />
+            <Route
+              path="/getaplace/:placeId"
+              element={<OnePlaceToCleanPage />}
+            />
           </Route>
           <Route element={<IsAdmin />}>
             <Route path="/dashboard" element={<DashboardPage />} />
