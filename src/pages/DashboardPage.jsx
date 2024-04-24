@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Api from "../service/myApi";
-import { Await } from "react-router";
-
+import SortByStartingDate from "../components/SortByStartingDate/SortByStartingDate.js/SortByStartingDate.jsx";
+import SortByDate from "../components/SelectProfilepage/SortByDate.jsx";
 function DashboardPage() {
   const [infosToDisplay, setInfosToDisplay] = useState(null);
   const [value, setValue] = useState(null);
@@ -64,6 +64,12 @@ function DashboardPage() {
           <option value="place">See all Places</option>
           <option value="event">See all Events</option>
         </select>
+      </div>
+      <div>
+        <SortByDate
+          dataActivity={infosToDisplay}
+          setDataActivity={setInfosToDisplay}
+        />
       </div>
 
       {infosToDisplay && value ? (

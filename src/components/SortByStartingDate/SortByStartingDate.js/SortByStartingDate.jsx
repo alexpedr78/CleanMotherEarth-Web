@@ -46,11 +46,11 @@ function SortByStartingDate({ dataActivity, setDataActivity }) {
         <option value="close">Sort By the closest Date</option>
         <option value="far">Sort By the farthest Date</option>
       </select>
-      <ul>
-        {dataActivity.map((activity, index) => (
+      {/* <ul>
+        {dataActivity? dataActivity.map((activity, index) => (
           <li key={index}>{activity.date}</li>
         ))}
-      </ul>
+      </ul> */}
     </div>
   );
 }

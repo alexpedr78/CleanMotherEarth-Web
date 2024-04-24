@@ -8,12 +8,12 @@ function SortByDate({ dataActivity, setDataActivity }) {
   };
 
   const sortDataByDate = () => {
-    if (valueSorting === "new") {
+    if (valueSorting === "new" && dataActivity) {
       const newData = dataActivity
         .slice()
         .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
       setDataActivity(newData);
-    } else if (valueSorting === "old") {
+    } else if (valueSorting === "old" && dataActivity) {
       const newData = dataActivity
         .slice()
         .sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
@@ -34,16 +34,15 @@ function SortByDate({ dataActivity, setDataActivity }) {
         onChange={handleSelect}
         value={valueSorting}
       >
-        <option disabled value="">
-          Select An Option
-        </option>
+        <option value="">Select An Option</option>
         <option value="old">Sort By the Oldest</option>
         <option value="new">Sort By the Newest</option>
       </select>
       <ul>
-        {dataActivity.map((activity, index) => (
-          <li key={index}>{activity.date}</li>
-        ))}
+        {dataActivity &&
+          dataActivity.map((activity, index) => (
+            <li key={index}>{activity.date}</li>
+          ))}
       </ul>
     </div>
   );

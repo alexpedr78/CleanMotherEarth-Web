@@ -90,7 +90,9 @@ function SelectProfilepage({ setSelect, select }) {
       console.log(error);
     }
   }
-
+  // if (dataActivity === "0") {
+  //   return <p>No data yet...</p>;
+  // }
   return (
     <div className="flex flex-col items-center justify-center h-full">
       <div className="p-4 md:p-8">
@@ -142,6 +144,12 @@ function SelectProfilepage({ setSelect, select }) {
                     alt=""
                   />
                 )}
+                {elem && elem.description ? (
+                  <p>{elem.description}</p>
+                ) : (
+                  <p>no description</p>
+                )}
+
                 <button
                   onClick={() => handleDelete(elem._id)}
                   className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
@@ -237,22 +245,14 @@ function SelectProfilepage({ setSelect, select }) {
                     </button>
                   </form>
                 )}
-                {/* 
-                {formTrigger && select === "events" && (
-                  <form
-                    onSubmit={(event) => handleSubmit(elem._id, event)}
-                    action=""
-                  >
-                    <div>
-                      <label htmlFor="">Name</label>
-                      <input onChange={handleChange} type="text" />
-                    </div>
-                  </form>
-                )} */}
               </div>
             ))
           ) : (
-            <div className="text-gray-500">No activity data available</div>
+            <div className="text-gray-500">
+              {" "}
+              <p>No activity data available for now... </p>
+              <p>Pick a filter... </p>
+            </div>
           )}
         </div>
       </div>
