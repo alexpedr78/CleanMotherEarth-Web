@@ -1,47 +1,57 @@
 import React, { useState } from "react";
 import Api from "../../service/myApi";
 import Map from "../Map/Map";
+import { json } from "react-router";
+
 function FormPlaceAppPage({ setShowForm, showForm, clickedPosition }) {
   const [formData, setFormData] = useState({
     name: "",
-    position: { long: "", lat: "" },
-    photo: "",
+    photo: null,
     description: "",
   });
 
-  function handleInputChange(e) {
-    const { name, value } = e.target;
+  const handleInputChange = (e) => {
+    const { name, value, files } = e.target;
 
     setFormData({
       ...formData,
-      [name]: value,
+      [name]: name === "photo" ? files[0] : value,
     });
-  }
+  };
 
-  async function handleSubmit(e) {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setShowForm(false);
-
+    let formDataToSend = {};
     try {
-      formData.position = {
-        long: clickedPosition.long,
-        lat: clickedPosition.lat,
-      };
-      let response = await Api.post("/garbagesPlaces", formData); // Pass formData to the API
-      if (response) {
-        console.log("Form submitted:", formData);
+      if (formData.photo) {
+        formDataToSend = new FormData();
+        formDataToSend.append("name", formData.name);
+        formDataToSend.append("position", JSON.stringify(clickedPosition));
+        formDataToSend.append("description", formData.description);
+        formDataToSend.append("photo", formData.photo);
+      } else {
+        if (clickedPosition) {
+          formDataToSend.position = clickedPosition;
+        }
+        if (formData.name) {
+          formDataToSend.name = formData.name;
+        }
+        if (formDataToSend.description) {
+          formDataToSend.description = formData.description;
+        }
       }
-
+      const response = await Api.post("/garbagesPlaces", formDataToSend);
       setFormData({
         name: "",
-        position: { long: "", lat: "" },
-        photo: "",
+        photo: null,
         description: "",
       });
+
+      setShowForm(false);
     } catch (error) {
-      console.error("Error submitting form:", error);
+      console.error("Error:", error);
     }
-  }
+  };
 
   return (
     <div>
@@ -76,10 +86,8 @@ function FormPlaceAppPage({ setShowForm, showForm, clickedPosition }) {
               <input
                 type="file"
                 name="photo"
-                value={formData.photo}
                 onChange={handleInputChange}
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                placeholder="Enter photo URL"
               />
             </div>
             <div className="mb-4">

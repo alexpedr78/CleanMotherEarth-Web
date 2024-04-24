@@ -9,8 +9,6 @@ function OnePlaceToCleanPage() {
   async function fetchOnePlace() {
     try {
       let response = await Api.get(`garbagesPlaces/${placeId}`);
-      console.log(response.data);
-      setPlaceInfos(response.data);
     } catch (error) {
       console.log(error);
     }
@@ -18,7 +16,7 @@ function OnePlaceToCleanPage() {
 
   useEffect(() => {
     fetchOnePlace();
-  }, []); // Empty dependency array ensures this effect runs only once on mount
+  }, []);
 
   if (!placeInfos) {
     return <p>No data</p>;
@@ -38,7 +36,7 @@ function OnePlaceToCleanPage() {
           {placeInfos && placeInfos.createdAt ? placeInfos.createdAt : null}
         </p>
       </div>
-      <AddAnEvent />
+      <AddAnEvent placeInfos={placeInfos} placeId={placeId} />
     </div>
   );
 }

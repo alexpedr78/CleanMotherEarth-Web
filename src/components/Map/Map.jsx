@@ -14,24 +14,21 @@ function Map(props) {
 
   async function handleJoiningClick(markerId) {
     try {
-      let dataToSend = { _id: markerId };
-      const response = await Api.post("/joining", dataToSend);
-      setJoining([...joining, dataToSend]);
+      let data = { _id: markerId };
+      const response = await Api.post("/joining", data);
+      setJoining([...joining, markerId]);
     } catch (error) {
       console.log(error);
     }
   }
   async function handleCancelJoining(markerId) {
     try {
-      const response = await Api.delete(`/joining/${markerId}`);
-      setJoining((prev) => {
-        return prev.filter((id) => id !== markerId);
-      });
+      const response = await Api.delete(`/joining/map/${markerId}`);
+      setJoining((prevJoining) => prevJoining.filter((id) => id !== markerId));
     } catch (error) {
       console.log(error);
     }
   }
-
   return (
     <div className="absolute bottom-0 left-0 w-full h-full">
       <MapContainer
@@ -48,7 +45,8 @@ function Map(props) {
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        {markers && Array.isArray(markers) !== 0 ? (
+
+        {Array.isArray(markers) && markers.length !== 0 ? (
           markers.map((marker, index) => (
             <Marker
               position={
@@ -74,18 +72,23 @@ function Map(props) {
                   )}
                 </div>
                 <div>
-                  <AddAnEventButton markerId={marker._id} />
+                  {filter === "place" ? (
+                    <AddAnEventButton markerId={marker._id} />
+                  ) : (
+                    ""
+                  )}
                 </div>
                 {filter === "event" && (
                   <div>
-                    {joining.includes(marker._id) ? (
+                    {joining.includes(marker._id) && (
                       <button
                         className="mt-2 bg-red-500 text-white px-4 py-2 rounded-md shadow-md hover:bg-red-600"
                         onClick={() => handleCancelJoining(marker._id)}
                       >
                         Cancel Joining
                       </button>
-                    ) : (
+                    )}{" "}
+                    {joining && joining.length === 0 && (
                       <button
                         className="mt-2 bg-blue-500 text-white px-4 py-2 rounded-md shadow-md hover:bg-blue-600"
                         onClick={() => handleJoiningClick(marker._id)}

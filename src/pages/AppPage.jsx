@@ -9,7 +9,6 @@ function AppPage() {
   const [placeForm, setPlaceForm] = useState(null);
   const [clickedPosition, setClickedPosition] = useState({ long: "", lat: "" });
   const [showForm, setShowForm] = useState(false);
-
   async function fetchMarkersData() {
     try {
       let requestUrl = "";
@@ -45,7 +44,9 @@ function AppPage() {
     setFilter(value);
     setPlaceForm(value);
   }
-
+  if (!joining) {
+    return <p>loading</p>;
+  }
   return (
     <div className="p-8">
       <div className="flex text-3xl md:text-4xl lg:text-5xl justify-center font-bold mb-4 text-blue-900">
@@ -89,9 +90,6 @@ function AppPage() {
         <Map
           clickedPosition={clickedPosition}
           setClickedPosition={setClickedPosition}
-          placeForm={placeForm}
-          setPlaceForm={setPlaceForm}
-          setMarkers={setMarkers}
           filter={filter}
           markers={markers}
           setJoining={setJoining}

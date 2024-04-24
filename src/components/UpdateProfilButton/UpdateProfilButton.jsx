@@ -11,7 +11,6 @@ function UpdateProfilButton({
 }) {
   const [formState, setFormState] = useState({
     email: userDetail.email,
-    // password: "",
     name: userDetail.name,
     pseudo: userDetail.pseudo,
     file: userDetail.avatar,
@@ -28,27 +27,35 @@ function UpdateProfilButton({
   };
 
   const handleFileChange = (e) => {
+    const file = e.target.files[0];
     setFormState((prevState) => ({
       ...prevState,
-      file: e.target.files[0],
+      file: file,
     }));
   };
+
   const handleCancel = () => {
-    // Reset form data and close the form
     setUpdateForm(!updateForm);
   };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    let formData;
     try {
-      const formData = new FormData();
-      formData.append("email", formState.email);
-      // formData.append("password", formState.password);
-      formData.append("name", formState.name);
-      formData.append("pseudo", formState.pseudo);
-      formData.append("avatar", formState.file);
-
+      if (formState.file) {
+        formData = new FormData();
+        formData.append("email", formState.email);
+        formData.append("name", formState.name);
+        formData.append("pseudo", formState.pseudo);
+        formData.append("avatar", formState.file);
+      } else {
+        const formData = {
+          email,
+          name,
+          pseudo,
+        };
+      }
       const response = await Api.put("/users", formData);
-
       if (response.status === 201) {
         nav("/profil");
       }

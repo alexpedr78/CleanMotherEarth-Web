@@ -11,7 +11,7 @@ function ProfilePage() {
   const [select, setSelect] = useState(null);
   const [updateForm, setUpdateForm] = useState(false);
   const [reloadInfos, setReloadInfos] = useState(false);
-  const [showDeleteModal, setShowDeleteModal] = useState(false); // State for managing the visibility of the delete modal
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
   const nav = useNavigate();
 
   async function getUserInfo() {
@@ -28,14 +28,14 @@ function ProfilePage() {
   }, [reloadInfos]);
 
   async function handleDelete() {
-    setShowDeleteModal(true); // Show the delete confirmation modal
+    setShowDeleteModal(true);
   }
 
   async function confirmDelete() {
     try {
       await Api.delete("/users", userDetail._id);
       logout();
-      nav("/"); // Redirect to the home page after logout
+      nav("/");
     } catch (error) {
       console.log(error);
     }
@@ -44,7 +44,9 @@ function ProfilePage() {
   if (!userDetail) {
     return <p>Loading...</p>;
   }
-
+  function handleDashboard() {
+    nav("/dashboard");
+  }
   return (
     <>
       {!updateForm ? (
@@ -74,6 +76,11 @@ function ProfilePage() {
                   <p className="text-lg font-semibold">
                     Your Email: {userDetail.email || "N/A"}
                   </p>
+                  {userDetail && userDetail.role === "admin" ? (
+                    <button onClick={handleDashboard}>
+                      Go to the Dashboard
+                    </button>
+                  ) : null}
                   <SelectProfilepage select={select} setSelect={setSelect} />
                 </div>
               </div>
@@ -105,7 +112,6 @@ function ProfilePage() {
         />
       )}
 
-      {/* Modal for confirming account deletion */}
       {showDeleteModal && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
           <div className="bg-white p-8 rounded-lg">

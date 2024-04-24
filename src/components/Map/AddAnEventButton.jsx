@@ -1,4 +1,3 @@
-import React from "react";
 import { useNavigate } from "react-router";
 function AddAnEventButton({ markerId }) {
   const nav = useNavigate();
@@ -6,7 +5,12 @@ function AddAnEventButton({ markerId }) {
     nav(`/getaplace/${markerId}`);
   }
   return (
-    <button onClick={handleAddAnEvent}>Add An event about this place</button>
+    <button
+      className="mt-2 bg-red-500 text-white px-4 py-2 rounded-md shadow-md hover:bg-red-600"
+      onClick={handleAddAnEvent}
+    >
+      Add An event about this place
+    </button>
   );
 }
 

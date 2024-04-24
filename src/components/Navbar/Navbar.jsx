@@ -1,4 +1,3 @@
-// Navbar.js
 import { Link } from "react-router-dom";
 import useAuth from "../../context/useAuth";
 
@@ -13,18 +12,16 @@ function Navbar() {
           </Link>
         </li>
         <li>
-          <Link to={"/user"} className="text-white hover:text-gray-300">
-            Profile
-          </Link>
-        </li>
-        <li>
           <Link to={"/app"} className="text-white hover:text-gray-300">
             App
           </Link>
         </li>
+        <li>
+          <Link to={"/user"} className="text-white hover:text-gray-300">
+            Profile
+          </Link>
+        </li>
         <li className="flex items-center">
-          {" "}
-          {/* Add flex class here */}
           {isLoggedIn ? (
             <button
               onClick={logout}
