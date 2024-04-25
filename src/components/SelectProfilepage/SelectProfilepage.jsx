@@ -98,7 +98,7 @@ function SelectProfilepage({ setSelect, select }) {
     }
   }
   async function handlePeopleComing(eventId) {
-    setShoComing((prevState) => !prevState);
+    // setShoComing((prevState) => !prevState);
     try {
       let response = await Api.get(`/joining/${eventId}`);
 
@@ -107,6 +107,7 @@ function SelectProfilepage({ setSelect, select }) {
         [eventId]: response.data,
       }));
       setUpdate2((prevState) => !prevState);
+      setShoComing((prevState) => !prevState);
     } catch (error) {
       console.log(error);
     }
@@ -152,7 +153,6 @@ function SelectProfilepage({ setSelect, select }) {
           name=""
           id=""
           onChange={handleSelectChange}
-          value={select}
         >
           <option className="bg-blue-500  rounded-md" value="-1">
             Check Your Activity
@@ -256,19 +256,19 @@ function SelectProfilepage({ setSelect, select }) {
                     )
                   ) : null}
                   <div>
-                    {select === "events" && !shoComing ? (
+                    {select === "events" && shoComing ? (
                       <button
                         className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                         onClick={() => handlePeopleComing(elem._id)}
                       >
-                        See People coming to your Events
+                        Hide People coming to your Events
                       </button>
                     ) : (
                       <button
                         className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                         onClick={() => handlePeopleComing(elem._id)}
                       >
-                        Hide People coming to your Events
+                        See People coming to your Events
                       </button>
                     )}
                     {shoComing ? (
