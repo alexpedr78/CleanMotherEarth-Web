@@ -50,7 +50,7 @@ function ProfilePage() {
   }
 
   return (
-    <div className="p-4 md:p-8 bg-blue-50 min-h-screen">
+    <div className="p-4 md:p-8 bg-blue-50 min-h-screen mb-12">
       {!updateForm ? (
         <div className="max-w-screen-sm mx-auto">
           <div className="bg-blue-300 p-4 shadow rounded-md">

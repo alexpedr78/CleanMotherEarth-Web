@@ -9,24 +9,10 @@ function SortByStartingDate({ dataActivity, setDataActivity, select }) {
 
   const sortDataByDate = () => {
     if (!dataActivity || dataActivity.length === 0 || select === null) {
-      // Handle case where data is not available or select is null
       return;
     }
 
     let newData = dataActivity.slice();
-
-    // if ((valueSorting === "close" || select === "events") && select !== null) {
-    //   newData.sort(
-    //     (a, b) => new Date(b.eventId.timeStart) - new Date(a.eventId.timeStart)
-    //   );
-    // }
-
-    // if ((valueSorting === "far" || select === "events") && select !== null) {
-    //   newData.sort(
-    //     (a, b) => new Date(a.eventId.timeStart) - new Date(b.eventId.timeStart)
-    //   );
-    // }
-
     if ((valueSorting === "close" || select === "event") && select !== null) {
       newData.sort((a, b) => new Date(b.timeStart) - new Date(a.timeStart));
     }

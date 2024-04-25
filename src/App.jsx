@@ -1,8 +1,5 @@
 import { Routes, Route } from "react-router-dom";
 import "leaflet/dist/leaflet.css";
-
-// import "react-leaflet/dist/react-leaflet.css";
-
 /* Pages */
 import SignupPage from "./pages/SignupPage";
 import LoginPage from "./pages/LoginPage";
@@ -19,7 +16,6 @@ import OnePlaceToCleanPage from "./pages/OnePlaceToCleanPage.jsx";
 /* Components */
 import Layout from "./pages/Layout/Layout";
 function App() {
-  //const { user } = useAuth();
   return (
     <>
       <Layout>
