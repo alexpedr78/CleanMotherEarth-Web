@@ -8,11 +8,15 @@ import SelectProfilepage from "../components/SelectProfilepage/SelectProfilepage
 function ProfilePage() {
   const { logout } = useAuth();
   const [userDetail, setUserDetail] = useState(null);
-  const [select, setSelect] = useState(null);
+  const [select, setSelect] = useState("-1");
   const [updateForm, setUpdateForm] = useState(false);
   const [reloadInfos, setReloadInfos] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const nav = useNavigate();
+
+  useEffect(() => {
+    getUserInfo();
+  }, [reloadInfos]);
 
   async function getUserInfo() {
     try {
@@ -22,10 +26,6 @@ function ProfilePage() {
       console.log("Error fetching user info:", error);
     }
   }
-
-  useEffect(() => {
-    getUserInfo();
-  }, [reloadInfos]);
 
   async function handleDelete() {
     setShowDeleteModal(true);
@@ -44,43 +44,59 @@ function ProfilePage() {
   if (!userDetail) {
     return <p>Loading...</p>;
   }
+
   function handleDashboard() {
     nav("/dashboard");
   }
+
   return (
-    <>
+    <div className="p-4 md:p-8 bg-blue-50 min-h-screen">
       {!updateForm ? (
-        <div className="flex flex-col md:flex-row">
-          <div className="bg-white p-4 w-screen ">
+        <div className="max-w-screen-sm mx-auto">
+          <div className="bg-blue-300 p-4 shadow rounded-md">
             <div className="bg-blue-500 text-white p-4 rounded-lg mb-4">
-              <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold">
+              <h1 className="text-xl md:text-2xl lg:text-3xl font-bold text-center">
                 Welcome back {userDetail.pseudo}
               </h1>
             </div>
+
             <div className="bg-white shadow-md rounded-lg p-4">
-              <div className="flex flex-col md:flex-row items-center justify-between">
-                <div className="mb-4 md:mb-0 md:mr-4">
+              <h2 className="text-lg md:text-xl font-semibold mb-4">
+                Your ID Card
+              </h2>
+              <p className="text-lg md:text-xl font-semibold mb-4">
+                From the CleanMotherEarth Community
+              </p>
+              <div>
+                <div>
                   <img
                     src={userDetail.avatar}
                     alt="Avatar"
                     className="w-24 h-24 md:w-32 md:h-32 rounded-full mb-4 md:mb-0"
                   />
-                </div>
-                <div>
-                  <p className="text-lg font-semibold">
-                    Your Name: {userDetail.name}
-                  </p>
-                  <p className="text-lg font-semibold">
-                    Your Pseudo: {userDetail.pseudo}
-                  </p>
-                  <p className="text-lg font-semibold">
-                    Your Email: {userDetail.email || "N/A"}
-                  </p>
-                  {userDetail && userDetail.role === "admin" ? (
-                    <button onClick={handleDashboard}>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="text-sm md:text-base font-semibold">
+                      <p>Your Name:</p>
+                      <p>{userDetail.name}</p>
+                    </div>
+                    <div className="text-sm md:text-base font-semibold">
+                      <p>Your Pseudo:</p>
+                      <p>{userDetail.pseudo}</p>
+                    </div>
+                    <div className="text-sm md:text-base font-semibold">
+                      <p>Your Email:</p>
+                      <p>{userDetail.email || "N/A"}</p>
+                    </div>
+                  </div>
+
+                  {userDetail && userDetail.role === "admin" && (
+                    <button
+                      onClick={handleDashboard}
+                      className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mt-4"
+                    >
                       Go to the Dashboard
                     </button>
-                  ) : null}
+                  )}
                   <SelectProfilepage select={select} setSelect={setSelect} />
                 </div>
               </div>
@@ -88,13 +104,13 @@ function ProfilePage() {
             <div className="mt-4">
               <button
                 onClick={() => setUpdateForm(!updateForm)}
-                className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mr-4"
               >
                 Update your profile
               </button>
               <button
                 onClick={handleDelete}
-                className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                className="bg-violet-500 hover:bg-violet-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
               >
                 Delete Your Account
               </button>
@@ -119,7 +135,7 @@ function ProfilePage() {
             <div className="mt-4 flex justify-end">
               <button
                 onClick={() => setShowDeleteModal(false)}
-                className="mr-4 bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mr-4"
               >
                 Cancel
               </button>
@@ -133,7 +149,7 @@ function ProfilePage() {
           </div>
         </div>
       )}
-    </>
+    </div>
   );
 }
 

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-function SortByStartingDate({ dataActivity, setDataActivity }) {
+function SortByStartingDate({ dataActivity, setDataActivity, select }) {
   const [valueSorting, setValueSorting] = useState(null);
 
   const handleSelect = (e) => {
@@ -8,25 +8,34 @@ function SortByStartingDate({ dataActivity, setDataActivity }) {
   };
 
   const sortDataByDate = () => {
-    if (valueSorting === "close") {
-      const newData = dataActivity
-        .slice()
-        .sort(
-          (a, b) =>
-            new Date(b.eventId.timeStart) - new Date(a.eventId.timeStart)
-        );
-      setDataActivity(newData);
-    } else if (valueSorting === "far") {
-      const newData = dataActivity
-        .slice()
-        .sort(
-          (a, b) =>
-            new Date(a.eventId.timeStart) - new Date(b.eventId.timeStart)
-        );
-      setDataActivity(newData);
-    } else {
-      return dataActivity;
+    if (!dataActivity || dataActivity.length === 0 || select === null) {
+      // Handle case where data is not available or select is null
+      return;
     }
+
+    let newData = dataActivity.slice();
+
+    // if ((valueSorting === "close" || select === "events") && select !== null) {
+    //   newData.sort(
+    //     (a, b) => new Date(b.eventId.timeStart) - new Date(a.eventId.timeStart)
+    //   );
+    // }
+
+    // if ((valueSorting === "far" || select === "events") && select !== null) {
+    //   newData.sort(
+    //     (a, b) => new Date(a.eventId.timeStart) - new Date(b.eventId.timeStart)
+    //   );
+    // }
+
+    if ((valueSorting === "close" || select === "event") && select !== null) {
+      newData.sort((a, b) => new Date(b.timeStart) - new Date(a.timeStart));
+    }
+
+    if ((valueSorting === "far" || select === "event") && select !== null) {
+      newData.sort((a, b) => new Date(a.timeStart) - new Date(b.timeStart));
+    }
+
+    setDataActivity(newData);
   };
 
   useEffect(() => {
@@ -46,11 +55,6 @@ function SortByStartingDate({ dataActivity, setDataActivity }) {
         <option value="close">Sort By the closest Date</option>
         <option value="far">Sort By the farthest Date</option>
       </select>
-      {/* <ul>
-        {dataActivity? dataActivity.map((activity, index) => (
-          <li key={index}>{activity.date}</li>
-        ))}
-      </ul> */}
     </div>
   );
 }

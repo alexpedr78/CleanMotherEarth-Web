@@ -4,7 +4,7 @@ import useAuth from "../../context/useAuth";
 function Navbar() {
   const { isLoggedIn, logout } = useAuth();
   return (
-    <nav className="bg-indigo-800 py-4 sticky top-0">
+    <nav className="bg-gradient-to-r from-indigo-800 to-indigo-600 py-4 sticky top-0 z-10">
       <ul className="flex justify-between items-center px-8">
         <li>
           <Link to={"/"} className="text-white hover:text-gray-300">

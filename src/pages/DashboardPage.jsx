@@ -51,7 +51,7 @@ function DashboardPage() {
   }
 
   return (
-    <div className="mx-auto max-w-lg p-4">
+    <div className="mx-auto p-4 bg-blue-50 min-h-screen">
       <h1 className="text-2xl font-bold mb-4">Dashboard</h1>
       <div className="mb-4">
         <select

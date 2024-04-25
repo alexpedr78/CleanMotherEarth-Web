@@ -9,6 +9,7 @@ import LoginPage from "./pages/LoginPage";
 import ProfilePage from "./pages/ProfilePage";
 import DashboardPage from "./pages/DashboardPage";
 import AppPage from "./pages/AppPage";
+import NotFoundPage from "./pages/NotFoundPage.jsx";
 import HomePage from "./pages/HomePage";
 /* Re-Routing */
 import IsAdmin from "./components/routing/IsAdmin";
@@ -39,6 +40,7 @@ function App() {
           <Route element={<IsAdmin />}>
             <Route path="/dashboard" element={<DashboardPage />} />
           </Route>
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Layout>
     </>
