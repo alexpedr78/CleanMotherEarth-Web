@@ -42,16 +42,16 @@ function SelectProfilepage({ setSelect, select }) {
   }, [select, update, update2]);
 
   async function handleSelectChange(e) {
-    setSelect(e.target.value);
+    setSelect((prev) => e.target.value);
   }
   async function handleEdit() {
-    setFormTrigger(!formTrigger);
+    setFormTrigger((prev) => !formTrigger);
   }
   function handleChange(e) {
     if (e.target.type === "file") {
       setFormData({
         ...formData,
-        file: e.target.files[0], // Update file property
+        file: e.target.files[0],
       });
     } else {
       setFormData({
@@ -92,13 +92,12 @@ function SelectProfilepage({ setSelect, select }) {
       }
 
       setUpdate((prevState) => !prevState);
-      setFormTrigger(false);
+      setFormTrigger((prev) => false);
     } catch (error) {
       console.log(error);
     }
   }
   async function handlePeopleComing(eventId) {
-    // setShoComing((prevState) => !prevState);
     try {
       let response = await Api.get(`/joining/${eventId}`);
 
@@ -145,6 +144,7 @@ function SelectProfilepage({ setSelect, select }) {
     const options = { year: "numeric", month: "long", day: "numeric" };
     return date.toLocaleDateString(undefined, options);
   }
+
   return (
     <div className="flex flex-col items-center justify-center h-full">
       <div className="p-4 md:p-8">
@@ -256,14 +256,15 @@ function SelectProfilepage({ setSelect, select }) {
                     )
                   ) : null}
                   <div>
-                    {select === "events" && shoComing ? (
+                    {select === "events" && shoComing && (
                       <button
                         className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                         onClick={() => handlePeopleComing(elem._id)}
                       >
                         Hide People coming to your Events
                       </button>
-                    ) : (
+                    )}{" "}
+                    {select === "events" && !shoComing && (
                       <button
                         className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                         onClick={() => handlePeopleComing(elem._id)}

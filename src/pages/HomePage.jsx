@@ -7,7 +7,7 @@ function HomePage() {
   async function fetchStaticData() {
     try {
       const response = await Api.get("/garbagesPlaces/cleaned/all");
-      setCleanedPlaces(response.data.slice(0, 4) || ["Beach", "Park", "River"]); // Set default places if response is empty
+      setCleanedPlaces(response.data.slice(0, 4) || ["Beach", "Park", "River"]);
     } catch (error) {
       console.error("Error fetching static data:", error);
     }
@@ -21,11 +21,12 @@ function HomePage() {
     <div className="flex justify-between">
       <div className="w-1/2 p-4">
         <h1 className="text-xl font-bold mb-4">Cleaned Places</h1>
+        <h1 className="text-xl font-bold mb-4">By the Community</h1>
         <ul>
           {cleanedPlaces.map((place, index) => (
-            <li key={index} className="mb-2">
+            <li key={index} className="mb-2 border shadow-md">
               <p>{place.name}</p>
-              <p>Creator:{place.creator}</p>
+              <p>Creator:{place.creator.name}</p>
               <img src={place.photo} alt="" />
               <p></p>
             </li>
@@ -33,7 +34,7 @@ function HomePage() {
         </ul>
       </div>
       <div className="w-8/12 p-4 mb-12">
-        <div className="bg-blue-400 rounded-lg p-6 text-blue mb-4">
+        <div className="bg-blue-400 rounded-lg p-6 text-blue mb-4 border shadow-sm">
           <h1 className=" text-white mb-4 text-xl">
             Walk, Run, Bike, Explore the planet
           </h1>
