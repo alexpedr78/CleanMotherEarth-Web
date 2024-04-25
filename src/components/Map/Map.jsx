@@ -80,15 +80,14 @@ function Map(props) {
                 </div>
                 {filter === "event" && (
                   <div>
-                    {joining.includes(marker._id) && (
+                    {joining.includes(marker._id) ? (
                       <button
                         className="mt-2 bg-red-500 text-white px-4 py-2 rounded-md shadow-md hover:bg-red-600"
                         onClick={() => handleCancelJoining(marker._id)}
                       >
                         Cancel Joining
                       </button>
-                    )}{" "}
-                    {joining && joining.length === 0 && (
+                    ) : (
                       <button
                         className="mt-2 bg-blue-500 text-white px-4 py-2 rounded-md shadow-md hover:bg-blue-600"
                         onClick={() => handleJoiningClick(marker._id)}

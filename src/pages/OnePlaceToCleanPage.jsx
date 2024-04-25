@@ -9,6 +9,7 @@ function OnePlaceToCleanPage() {
   async function fetchOnePlace() {
     try {
       let response = await Api.get(`garbagesPlaces/${placeId}`);
+      setPlaceInfos(response.data);
     } catch (error) {
       console.log(error);
     }
