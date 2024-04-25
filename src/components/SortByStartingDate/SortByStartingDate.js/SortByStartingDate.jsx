@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
 function SortByStartingDate({ dataActivity, setDataActivity, select }) {
-  const [valueSorting, setValueSorting] = useState(null);
+  const [valueSorting, setValueSorting] = useState("");
 
   const handleSelect = (e) => {
     setValueSorting(e.target.value);

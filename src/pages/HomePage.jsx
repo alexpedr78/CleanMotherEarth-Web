@@ -19,50 +19,62 @@ function HomePage() {
 
   return (
     <div className="flex justify-between">
-      <div className="w-1/2 p-4">
-        <h1 className="text-xl font-bold mb-4">Cleaned Places</h1>
-        <h1 className="text-xl font-bold mb-4">By the Community</h1>
-        <ul>
+      <div className="w-full md:w-1/2 p-4">
+        <h1 className="text-2xl font-bold mb-4">Cleaned Places</h1>
+        <h2 className="text-lg font-bold mb-4">By the Community</h2>
+        <ul className="grid gap-4">
           {cleanedPlaces.map((place, index) => (
-            <li key={index} className="mb-2 border shadow-md">
-              <p>{place.name}</p>
-              <p>Creator:{place.creator.name}</p>
-              <img src={place.photo} alt="" />
-              <p></p>
+            <li
+              key={index}
+              className="bg-white border rounded-lg shadow-md overflow-hidden transition duration-300 ease-in-out transform hover:scale-105"
+            >
+              <img
+                src={place.photo}
+                alt={place.name}
+                className="w-full h-auto"
+              />
+              <div className="p-4">
+                <p className="text-lg font-semibold">{place.name}</p>
+                <p className="text-sm text-gray-600">
+                  Creator: {place.creator.name}
+                </p>
+              </div>
             </li>
           ))}
         </ul>
       </div>
-      <div className="w-8/12 p-4 mb-12">
-        <div className="bg-blue-400 rounded-lg p-6 text-blue mb-4 border shadow-sm">
-          <h1 className=" text-white mb-4 text-xl">
+
+      <div className="w-full md:w-8/12 lg:w-6/12 xl:w-4/12 p-4 mb-12 flex flex-col gap-8">
+        <div className="bg-blue-400 rounded-lg p-6 text-blue shadow-md transition duration-300 ease-in-out transform hover:scale-105">
+          <h1 className="text-white text-2xl mb-4 font-bold">
             Walk, Run, Bike, Explore the planet
           </h1>
-          <p className="mb-4">
+          <p className="mb-4 text-lg">
             Help spot dirty places by adding new locations to our database
           </p>
-          <p>Share the location, take a picture, and add a description</p>
+          <p className="text-lg">
+            Share the location, take a picture, and add a description
+          </p>
         </div>
-        <div className="bg-blue-400 rounded-lg p-6 text-blue mb-4">
-          <h1 className="text-xl text-white mb-4">
+        <div className="transition duration-300 ease-in-out transform hover:scale-105 bg-blue-400 rounded-lg p-6 text-blue shadow-md">
+          <h1 className="text-white text-2xl mb-4 font-bold">
             Create events and connect with like-minded individuals
           </h1>
-          <p className="mb-4 text-blue">
+          <p className="mb-4 text-lg">
             Organize events for cleaning up existing places or create new ones
           </p>
-          <p className="mb-4 text-blue">
+          <p className="mb-4 text-lg">
             Join events created by others and contribute to a cleaner
             environment
           </p>
         </div>
-        <div className="bg-blue-400 rounded-lg p-6">
-          <h1 className="mb-4 text-white text-xl">Think Broader</h1>
-          <p className="mb-4 text-blue">
-            Help preserve a better environment for future generations
+        <div className="bg-blue-400 rounded-lg p-6 text-blue shadow-md transition duration-300 ease-in-out transform hover:scale-105">
+          <h1 className="text-white text-2xl mb-4 font-bold">Think Broader</h1>
+          <p className="mb-4 text-lg">
+            Help preserve a better environment for future generations and our
           </p>
-          <p className="mb-4 text-blue">
-            Contribute to low internet and data usage while ensuring high
-            security
+          <p className="mb-4 text-lg">
+            Low Internet and Data Storage, Real Impacts.
           </p>
         </div>
       </div>
