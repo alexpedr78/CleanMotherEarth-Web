@@ -10,7 +10,7 @@ CleanMoTheurEarth is a web application aimed at promoting environmental awarenes
 
 ## Features
 - **View Places:** Users can view places that need to be cleaned up, including their names, descriptions, and locations on a map.
-- **Join Events:** Users can join events organized to clean up specific areas.
+- **Join Events:** Users can join events organized to clean up specific places.
 - **Contribute:** Users can contribute by adding new places that need cleaning or organizing cleanup events.
 - **User Profiles:** Registered users have profiles where they can view their contributions and update their information.
 
