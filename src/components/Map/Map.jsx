@@ -89,7 +89,10 @@ function Map(props) {
                 <div className="font-semibold text-lg text-blue-900">
                   {marker.name}
                 </div>
-                <div className="text-gray-600">{marker._id}</div>
+
+                <div className="text-gray-600">
+                  <img src={marker.photo} alt="" />
+                </div>
                 <div className="text-gray-600 mt-2 border-t pt-2">
                   {marker.position ? (
                     <div>

@@ -31,6 +31,7 @@ function SelectProfilepage({ setSelect, select }) {
       }
 
       const response = await Api.get(`/${URL}`);
+      console.log(response.data);
       setDataActivity(response.data);
     } catch (error) {
       console.log(error);
@@ -144,7 +145,7 @@ function SelectProfilepage({ setSelect, select }) {
     const options = { year: "numeric", month: "long", day: "numeric" };
     return date.toLocaleDateString(undefined, options);
   }
-
+  console.log(select);
   return (
     <div className="flex flex-col items-center justify-center h-full">
       <div className="p-4 md:p-8">
@@ -195,10 +196,13 @@ function SelectProfilepage({ setSelect, select }) {
                   className="bg-white p-4 shadow rounded-md mb-2"
                 >
                   <h2 className="text-lg font-semibold">
-                    {`Title : ${elem.name}` ||
-                      `Title : ${elem.eventId && elem.eventId.name}` ||
-                      ""}
+                    {elem.name
+                      ? `Title: ${elem.name}`
+                      : elem.eventId && elem.eventId.name
+                      ? `Title: ${elem.eventId.name}`
+                      : "Title: "}
                   </h2>
+
                   <p>
                     {elem.timeStart
                       ? `Starting time:${formatDate(elem.timeStart)}`

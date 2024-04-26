@@ -74,7 +74,7 @@ function DashboardPage() {
 
       {infosToDisplay && value ? (
         infosToDisplay.map((elem) => (
-          <div key={elem._id} className="mb-4">
+          <div key={elem._id} className="mb-14">
             <p className="font-bold">{elem.name}</p>
             {elem.photo && (
               <img
@@ -90,7 +90,12 @@ function DashboardPage() {
                 className="mt-2 w-full h-auto rounded-md"
               />
             )}
-            <button onClick={() => handleDelete(elem._id)}>Delete</button>
+            <button
+              className="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              onClick={() => handleDelete(elem._id)}
+            >
+              Delete
+            </button>
           </div>
         ))
       ) : (
