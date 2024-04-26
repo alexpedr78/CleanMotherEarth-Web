@@ -245,20 +245,19 @@ function SelectProfilepage({ setSelect, select }) {
                       <p>This Place is not Cleaned Up</p>
                     )
                   ) : null}
-                  {select === "place" && elem && elem.cleaned === "false" ? (
-                    elem ? (
-                      <button
-                        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                        onClick={() => {
-                          setThisPlaceToClean(elem._id);
-                        }}
-                      >
-                        Set this place to Cleaned
-                      </button>
-                    ) : (
-                      <p>This Place is not Cleaned Up</p>
-                    )
-                  ) : null}
+                  {select === "place" && elem.cleaned === "false" ? (
+                    <button
+                      className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                      onClick={() => {
+                        setThisPlaceToClean(elem._id);
+                      }}
+                    >
+                      Set this place to Cleaned
+                    </button>
+                  ) : (
+                    <p>This Place is not Cleaned Up</p>
+                  )}
+
                   <div>
                     {select === "events" && shoComing && (
                       <button

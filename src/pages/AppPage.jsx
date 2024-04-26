@@ -54,7 +54,7 @@ function AppPage() {
   return (
     <div className="p-4 md:p-8">
       <div className="flex text-3xl mb-6 md:text-4xl lg:text-5xl justify-center font-bold mb-4 text-blue-900">
-        CleanMoTheurEarth
+        CleanMoThereEarth
       </div>
       <div className="max-w-screen-lg mx-auto">
         <div className="flex flex-col md:flex-row mb-8 md:mb-12">
