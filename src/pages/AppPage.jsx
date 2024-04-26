@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import Api from "../service/myApi";
 import Map from "../components/Map/Map";
 import FormPlaceAppPage from "../components/formPlaceAppPage/formPlaceAppPage.jsx";
-
+import AddAnEvent from "../components/AddAnEvent/AddAnEvent.jsx";
 function AppPage() {
   const [markers, setMarkers] = useState([]);
   const [filter, setFilter] = useState(null);
