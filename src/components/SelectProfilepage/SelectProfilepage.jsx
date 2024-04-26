@@ -238,7 +238,7 @@ function SelectProfilepage({ setSelect, select }) {
                       <p>no description</p>
                     )
                   ) : null}
-                  {select === "place" ? (
+                  {/* {select === "place" ? (
                     elem && elem.cleaned ? (
                       <p>Place Cleaned{elem.cleaned}</p>
                     ) : (
@@ -251,12 +251,12 @@ function SelectProfilepage({ setSelect, select }) {
                       onClick={() => {
                         setThisPlaceToClean(elem._id);
                       }}
-                    >
-                      Set this place to Cleaned
+                    > */}
+                  {/* Set this place to Cleaned
                     </button>
                   ) : (
                     <p>This Place is not Cleaned Up</p>
-                  )}
+                  )} */}
 
                   <div>
                     {select === "events" && shoComing && (
