@@ -53,10 +53,11 @@ function Map(props) {
     <div className="w-full h-full mb-8 z-10">
       <MapContainer
         style={{
-          width: mapWidth,
-          height: "400px",
+          width: "100%",
+          height: "100vh",
           border: "2px solid #4A90E2",
           borderRadius: "12px",
+          zIndex: 0
         }}
         center={[51.505, -0.09]}
         zoom={3}

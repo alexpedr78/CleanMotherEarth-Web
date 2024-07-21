@@ -9,6 +9,8 @@ import AppPage from "./pages/AppPage";
 import NotFoundPage from "./pages/NotFoundPage.jsx";
 import HomePage from "./pages/HomePage";
 /* Re-Routing */
+import Footer from "./components/Footer/Footer.jsx";
+import Navbar from "./components/Navbar/Navbar.jsx";
 import IsAdmin from "./components/routing/IsAdmin";
 import IsLoggedOut from "./components/routing/IsLoggedOut";
 import IsLoggedIn from "./components/routing/IsLoggedIn";
@@ -18,7 +20,8 @@ import Layout from "./pages/Layout/Layout";
 function App() {
   return (
     <>
-      <Layout>
+      {/* <Layout> */}
+      <Navbar />
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route element={<IsLoggedOut />}>
@@ -38,7 +41,8 @@ function App() {
           </Route>
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
-      </Layout>
+        <Footer />
+      {/* </Layout> */}
     </>
   );
 }

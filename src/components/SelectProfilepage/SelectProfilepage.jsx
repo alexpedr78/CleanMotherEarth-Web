@@ -29,10 +29,10 @@ function SelectProfilepage({ setSelect, select }) {
       if (select === "-1") {
         URL = "";
       }
+ if (URL!==""){const response = await Api.get(`/${URL}`);
 
-      const response = await Api.get(`/${URL}`);
-      console.log(response.data);
-      setDataActivity(response.data);
+ setDataActivity(response.data);}
+      
     } catch (error) {
       console.log(error);
     }
@@ -145,13 +145,13 @@ function SelectProfilepage({ setSelect, select }) {
     const options = { year: "numeric", month: "long", day: "numeric" };
     return date.toLocaleDateString(undefined, options);
   }
-  console.log(select);
+
   return (
     <div className="flex flex-col items-center justify-center h-full">
       <div className="p-4 md:p-8">
         <select
-          className="mt-4 px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-          name=""
+       className="mt-1 px-1 py-1 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+
           id=""
           onChange={handleSelectChange}
         >

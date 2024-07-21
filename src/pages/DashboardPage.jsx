@@ -4,7 +4,7 @@ import SortByStartingDate from "../components/SortByStartingDate/SortByStartingD
 import SortByDate from "../components/SelectProfilepage/SortByDate.jsx";
 function DashboardPage() {
   const [infosToDisplay, setInfosToDisplay] = useState(null);
-  const [value, setValue] = useState(null);
+  const [value, setValue] = useState("");
   const [reload, setReload] = useState(false);
   async function fetchInfos() {
     try {

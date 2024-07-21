@@ -18,34 +18,40 @@ function HomePage() {
   }, []);
 
   return (
-    <div className="flex justify-between">
-      <div className="w-full md:w-1/2 p-4">
-        <h1 className="text-2xl font-bold mb-4">Cleaned Places</h1>
-        <h2 className="text-lg font-bold mb-4">By the Community</h2>
+    <div className="flex flex-wrap justify-between">
+      <main className="w-full md:w-1/2 p-4">
+        <header>
+          <h1 className="text-2xl font-bold mb-4">Cleaned Places</h1>
+          <h2 className="text-lg font-bold mb-4">By the Community</h2>
+        </header>
         <ul className="grid gap-4">
-          {cleanedPlaces.map((place, index) => (
-            <li
-              key={index}
-              className="bg-white border rounded-lg shadow-md overflow-hidden transition duration-300 ease-in-out transform hover:scale-105"
-            >
-              <img
-                src={place.photo}
-                alt={place.name}
-                className="w-full h-auto"
-              />
-              <div className="p-4">
-                <p className="text-lg font-semibold">{place.name}</p>
-                <p className="text-sm text-gray-600">
-                  Creator: {place.creator.name}
-                </p>
-              </div>
-            </li>
-          ))}
+          {cleanedPlaces.length > 0 ? (
+            cleanedPlaces.map((place, index) => (
+              <li
+                key={index}
+                className="bg-white border rounded-lg shadow-md overflow-hidden transition duration-300 ease-in-out transform hover:scale-105"
+              >
+                <img
+                  src={place.photo}
+                  alt={place.name}
+                  className="w-full h-auto"
+                />
+                <div className="p-4">
+                  <p className="text-lg font-semibold">{place.name}</p>
+                  <p className="text-sm text-gray-600">
+                    Creator: {place.creator.name}
+                  </p>
+                </div>
+              </li>
+            ))
+          ) : (
+            <p>No cleaned places available.</p>
+          )}
         </ul>
-      </div>
+      </main>
 
-      <div className="w-full md:w-8/12 lg:w-6/12 xl:w-4/12 p-4 mb-12 flex flex-col gap-8">
-        <div className="bg-blue-400 rounded-lg p-6 text-blue shadow-md transition duration-300 ease-in-out transform hover:scale-105">
+      <aside className="w-full md:w-8/12 lg:w-6/12 xl:w-4/12 p-4 mb-12 flex flex-col gap-8">
+        <section className="bg-blue-400 rounded-lg p-6 text-blue shadow-md transition duration-300 ease-in-out transform hover:scale-105">
           <h1 className="text-white text-2xl mb-4 font-bold">
             Walk, Run, Bike, Explore the planet
           </h1>
@@ -55,8 +61,8 @@ function HomePage() {
           <p className="text-lg">
             Share the location, take a picture, and add a description
           </p>
-        </div>
-        <div className="transition duration-300 ease-in-out transform hover:scale-105 bg-blue-400 rounded-lg p-6 text-blue shadow-md">
+        </section>
+        <section className="transition duration-300 ease-in-out transform hover:scale-105 bg-blue-400 rounded-lg p-6 text-blue shadow-md">
           <h1 className="text-white text-2xl mb-4 font-bold">
             Create events and connect with like-minded individuals
           </h1>
@@ -67,8 +73,8 @@ function HomePage() {
             Join events created by others and contribute to a cleaner
             environment
           </p>
-        </div>
-        <div className="bg-blue-400 rounded-lg p-6 text-blue shadow-md transition duration-300 ease-in-out transform hover:scale-105">
+        </section>
+        <section className="bg-blue-400 rounded-lg p-6 text-blue shadow-md transition duration-300 ease-in-out transform hover:scale-105">
           <h1 className="text-white text-2xl mb-4 font-bold">Think Broader</h1>
           <p className="mb-4 text-lg">
             Help preserve a better environment for future generations and our
@@ -76,8 +82,8 @@ function HomePage() {
           <p className="mb-4 text-lg">
             Low Internet and Data Storage, Real Impacts.
           </p>
-        </div>
-      </div>
+        </section>
+      </aside>
     </div>
   );
 }
