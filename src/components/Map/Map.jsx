@@ -50,18 +50,21 @@ function Map(props) {
   }
 
   return (
-    <div className="w-full h-full mb-8 z-10">
+    <div
+      className="w-full h-full mb-8 z-10"
+      style={{ height: "100vh", width: "100%" }}
+    >
       <MapContainer
         style={{
           width: "100%",
-          height: "100vh",
+          height: "100%",
           border: "2px solid #4A90E2",
           borderRadius: "12px",
-          zIndex: 0
+          zIndex: 0,
         }}
         center={[51.505, -0.09]}
         zoom={3}
-        scrollWheelZoom={false}
+        scrollWheelZoom={true}
       >
         <GetPositionOnClick
           clickedPosition={clickedPosition}

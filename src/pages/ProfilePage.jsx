@@ -52,44 +52,33 @@ function ProfilePage() {
   return (
     <div className="p-4 md:p-8 bg-blue-50 min-h-screen mb-12">
       {!updateForm ? (
-        <div className="max-w-screen-sm mx-auto">
-          <div className="bg-white shadow-md rounded-lg p-6">
-            <div className="flex flex-col items-center mb-6">
-            
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-              <div className="bg-blue-500 text-white p-4 rounded-lg text-center">
-                
-                  <h2 className="text-lg md:text-xl font-semibold mb-2">
-                    Your ID Card
-                  </h2>
-                  <p className="text-sm md:text-base font-medium">
-                    From the CleanMotherEarth Community
-                  </p>
-                
-              </div>
-              <div className="bg-blue-300 text-blue-900 p-4 rounded-lg">
-              <div>
-                <img
-                  src={userDetail.avatar}
-                  alt="Avatar"
-                  className="w-24 h-24 md:w-32 md:h-32 rounded-full mb-4"
-                />
-                <h1 className="text-2xl md:text-3xl font-bold text-blue-900 mb-2">
-                  {userDetail.pseudo}
-                </h1>
-                <p className="text-lg md:text-xl font-semibold text-gray-700">
-                  {userDetail.name}
+        <div className="max-w-screen-md mx-auto">
+          <div className="bg-white shadow-md rounded-lg p-6 mb-8">
+          <div className="bg-blue-500 text-white p-4 rounded-lg text-center">
+                <h2 className="text-lg md:text-xl font-semibold mb-2">
+                  Your ID Card
+                </h2>
+                <p className="text-sm md:text-base font-medium">
+                  From the CleanMotherEarth Community
                 </p>
-                <p className="text-base md:text-lg text-gray-600">
-                  {userDetail.email || "No email provided"}
-                </p>
-              </div>
-                <SelectProfilepage select={select} setSelect={setSelect} />
-              </div>
-            </div>
+                <div className="flex flex-col items-center mb-6">
+              <img
+                src={userDetail.avatar}
+                alt="Avatar"
+                className="w-24 h-24 md:w-32 md:h-32 rounded-full mb-4"
+              />
+              <h1 className="text-2xl md:text-3xl font-bold text-blue-900 mb-2">
+                {userDetail.pseudo}
+              </h1>
+              <p className="text-lg md:text-xl font-semibold text-gray-700">
+                {userDetail.name}
+              </p>
+              <p className="text-base md:text-lg text-gray-600">
+                {userDetail.email || "No email provided"}
+              </p>
+              
             {userDetail.role === "admin" && (
-              <div className="flex justify-center mb-4">
+              <div className="flex justify-center mb-4 mt-4">
                 <button
                   onClick={handleDashboard}
                   className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mr-2"
@@ -98,7 +87,19 @@ function ProfilePage() {
                 </button>
               </div>
             )}
-            <div className="flex justify-center">
+            </div>
+
+              </div>
+          
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+           
+                        </div>
+                        <div className="bg-blue-300 text-blue-900 p-4 rounded-lg">
+                <SelectProfilepage select={select} setSelect={setSelect} />
+              </div>
+
+
+            <div className="flex justify-center mt-4">
               <button
                 onClick={() => setUpdateForm(true)}
                 className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mr-2"
@@ -118,7 +119,7 @@ function ProfilePage() {
         <UpdateProfilButton
           reloadInfos={reloadInfos}
           setReloadInfos={setReloadInfos}
-          getUserInfo={() => {}}
+          getUserInfo={getUserInfo}
           setUpdateForm={setUpdateForm}
           updateForm={updateForm}
           userDetail={userDetail}
@@ -149,7 +150,7 @@ function ProfilePage() {
         </div>
       )}
     </div>
-);
-};
+  );
+}
 
 export default ProfilePage;

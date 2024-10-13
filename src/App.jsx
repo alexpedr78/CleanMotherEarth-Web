@@ -16,11 +16,10 @@ import IsLoggedOut from "./components/routing/IsLoggedOut";
 import IsLoggedIn from "./components/routing/IsLoggedIn";
 import OnePlaceToCleanPage from "./pages/OnePlaceToCleanPage.jsx";
 /* Components */
-import Layout from "./pages/Layout/Layout";
+
 function App() {
   return (
     <>
-      {/* <Layout> */}
       <Navbar />
         <Routes>
           <Route path="/" element={<HomePage />} />
@@ -42,8 +41,7 @@ function App() {
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
         <Footer />
-      {/* </Layout> */}
-    </>
+          </>
   );
 }
 

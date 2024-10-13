@@ -10,7 +10,7 @@ function AppPage() {
   const [placeForm, setPlaceForm] = useState(null);
   const [clickedPosition, setClickedPosition] = useState({ long: "", lat: "" });
   const [showForm, setShowForm] = useState(false);
-  const [isAButtonClicked, setIsAButtonClicked]= useState('')
+  const [isAButtonClicked, setIsAButtonClicked] = useState(false);
 
   // Fetch markers data based on filter and clickedPosition changes
   async function fetchMarkersData() {
@@ -47,9 +47,10 @@ function AppPage() {
     fetchIfUserIsJoining();
   }, [filter, clickedPosition]);
 
- function handleClickButtonEveryTime(){
- setIsAButtonClicked(true)
- }
+  function handleClickButtonEveryTime() {
+    setIsAButtonClicked(true);
+  }
+
   // Handle click on filter buttons
   function handleClickButton(value) {
     setFilter(value);
@@ -65,24 +66,21 @@ function AppPage() {
     <div className="relative overflow-hidden z-0 min-h-screen">
       {/* Map Component */}
       <Map
-        // className="z-0"
         clickedPosition={clickedPosition}
         setClickedPosition={setClickedPosition}
         filter={filter}
         markers={markers}
         setJoining={setJoining}
         joining={joining}
+        scrollWheelZoom={true}
+        // zoomControl={true} // Ensure zoom control is enabled
       />
 
       {/* Overlay Content */}
-      <div
-        className={`absolute inset-0 flex flex-col justify-center items-center m-25% z-10 p-4 pointer-events-none transition-transform duration-500 ${
-          isAButtonClicked ? "transform translate-x-[-17%] w-10%" : ""
-        }`}
-      >
+      <div className="absolute top-4 left-4 z-10 p-4 pointer-events-none">
         <div className="bg-white bg-opacity-80 p-4 rounded-lg shadow-md pointer-events-auto">
           <h2 className="text-xl font-bold mb-4 text-center text-gray-800">
-            CleanMoThereEarth
+            CleanMotherEarth
           </h2>
           <div className="flex flex-col md:flex-row mb-4 md:mb-8">
             <button
