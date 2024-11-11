@@ -1,5 +1,5 @@
 import { createContext, useState, useEffect } from "react";
-import boardgameApi from "../service/myApi";
+import Api from "../service/myApi";
 
 export const AuthContext = createContext();
 
@@ -24,7 +24,7 @@ function AuthContextWrapper({ children }) {
         setIsLoggedIn(false);
         return;
       }
-      const response = await boardgameApi.get("/auth/verify", {
+      const response = await Api.get("/auth/verify", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
